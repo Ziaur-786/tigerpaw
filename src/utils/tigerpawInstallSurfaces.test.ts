@@ -20,17 +20,17 @@ async function importFreshInstaller() {
   return import(`./nativeInstaller/installer.ts?ts=${Date.now()}-${Math.random()}`)
 }
 
-test('install command displays ~/.local/bin/openclaude on non-Windows', async () => {
+test('install command displays ~/.local/bin/tigerpaw on non-Windows', async () => {
   mock.module('../utils/env.js', () => ({
     env: { platform: 'darwin' },
   }))
 
   const { getInstallationPath } = await importFreshInstallCommand()
 
-  expect(getInstallationPath()).toBe('~/.local/bin/openclaude')
+  expect(getInstallationPath()).toBe('~/.local/bin/tigerpaw')
 })
 
-test('install command displays openclaude.exe path on Windows', async () => {
+test('install command displays tigerpaw.exe path on Windows', async () => {
   mock.module('../utils/env.js', () => ({
     env: { platform: 'win32' },
   }))
@@ -38,14 +38,14 @@ test('install command displays openclaude.exe path on Windows', async () => {
   const { getInstallationPath } = await importFreshInstallCommand()
 
   expect(getInstallationPath()).toBe(
-    join(homedir(), '.local', 'bin', 'openclaude.exe').replace(/\//g, '\\'),
+    join(homedir(), '.local', 'bin', 'tigerpaw.exe').replace(/\//g, '\\'),
   )
 })
 
-test('cleanupNpmInstallations removes both openclaude and legacy claude local install dirs', async () => {
+test('cleanupNpmInstallations removes both tigerpaw and legacy claude local install dirs', async () => {
   const removedPaths: string[] = []
   ;(globalThis as Record<string, unknown>).MACRO = {
-    PACKAGE_URL: '@gitlawb/openclaude',
+    PACKAGE_URL: '@gitlawb/tigerpaw',
   }
 
   mock.module('fs/promises', () => ({
@@ -63,13 +63,13 @@ test('cleanupNpmInstallations removes both openclaude and legacy claude local in
   }))
 
   mock.module('./envUtils.js', () => ({
-    getClaudeConfigHomeDir: () => join(homedir(), '.openclaude'),
+    getClaudeConfigHomeDir: () => join(homedir(), '.tigerpaw'),
     isEnvTruthy: (value: string | undefined) => value === '1',
   }))
 
   const { cleanupNpmInstallations } = await importFreshInstaller()
   await cleanupNpmInstallations()
 
-  expect(removedPaths).toContain(join(homedir(), '.openclaude', 'local'))
+  expect(removedPaths).toContain(join(homedir(), '.tigerpaw', 'local'))
   expect(removedPaths).toContain(join(homedir(), '.claude', 'local'))
 })

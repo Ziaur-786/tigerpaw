@@ -14,7 +14,7 @@ afterEach(async () => {
 })
 
 async function makeProjectDir(): Promise<string> {
-  const dir = await mkdtemp(join(tmpdir(), 'openclaude-wiki-init-'))
+  const dir = await mkdtemp(join(tmpdir(), 'tigerpaw-wiki-init-'))
   tempDirs.push(dir)
   return dir
 }
@@ -26,17 +26,17 @@ test('initializeWiki creates the expected wiki scaffold', async () => {
 
   expect(result.alreadyExisted).toBe(false)
   expect(result.createdFiles).toEqual([
-    '.openclaude/wiki/schema.md',
-    '.openclaude/wiki/index.md',
-    '.openclaude/wiki/log.md',
-    '.openclaude/wiki/pages/architecture.md',
+    '.tigerpaw/wiki/schema.md',
+    '.tigerpaw/wiki/index.md',
+    '.tigerpaw/wiki/log.md',
+    '.tigerpaw/wiki/pages/architecture.md',
   ])
   expect(await readFile(paths.schemaFile, 'utf8')).toContain(
-    '# OpenClaude Wiki Schema',
+    '# Tigerpaw Wiki Schema',
   )
   expect(await readFile(paths.indexFile, 'utf8')).toContain('Wiki')
   expect(await readFile(paths.logFile, 'utf8')).toContain(
-    'Wiki initialized by OpenClaude',
+    'Wiki initialized by Tigerpaw',
   )
   expect(await readFile(join(paths.pagesDir, 'architecture.md'), 'utf8')).toContain(
     '# Architecture',

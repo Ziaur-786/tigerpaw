@@ -1,7 +1,7 @@
 {
-  "name": "openclaude-vscode",
-  "displayName": "OpenClaude",
-  "description": "Practical VS Code companion for OpenClaude with project-aware launch behavior and a real Control Center.",
+  "name": "tigerpaw-vscode",
+  "displayName": "Tigerpaw",
+  "description": "Practical VS Code companion for Tigerpaw with project-aware launch behavior and a real Control Center.",
   "version": "0.1.1",
   "publisher": "devnull-bootloader",
   "engines": {
@@ -13,13 +13,13 @@
   ],
   "activationEvents": [
     "onStartupFinished",
-    "onCommand:openclaude.start",
-    "onCommand:openclaude.startInWorkspaceRoot",
-    "onCommand:openclaude.openDocs",
-    "onCommand:openclaude.openSetupDocs",
-    "onCommand:openclaude.openWorkspaceProfile",
-    "onCommand:openclaude.openControlCenter",
-    "onView:openclaude.controlCenter"
+    "onCommand:tigerpaw.start",
+    "onCommand:tigerpaw.startInWorkspaceRoot",
+    "onCommand:tigerpaw.openDocs",
+    "onCommand:tigerpaw.openSetupDocs",
+    "onCommand:tigerpaw.openWorkspaceProfile",
+    "onCommand:tigerpaw.openControlCenter",
+    "onView:tigerpaw.controlCenter"
   ],
   "main": "./src/extension.js",
   "files": [
@@ -33,79 +33,79 @@
   "contributes": {
     "commands": [
       {
-        "command": "openclaude.start",
-        "title": "OpenClaude: Launch in Terminal",
-        "category": "OpenClaude"
+        "command": "tigerpaw.start",
+        "title": "Tigerpaw: Launch in Terminal",
+        "category": "Tigerpaw"
       },
       {
-        "command": "openclaude.startInWorkspaceRoot",
-        "title": "OpenClaude: Launch in Workspace Root",
-        "category": "OpenClaude"
+        "command": "tigerpaw.startInWorkspaceRoot",
+        "title": "Tigerpaw: Launch in Workspace Root",
+        "category": "Tigerpaw"
       },
       {
-        "command": "openclaude.openDocs",
-        "title": "OpenClaude: Open Repository",
-        "category": "OpenClaude"
+        "command": "tigerpaw.openDocs",
+        "title": "Tigerpaw: Open Repository",
+        "category": "Tigerpaw"
       },
       {
-        "command": "openclaude.openSetupDocs",
-        "title": "OpenClaude: Open Setup Guide",
-        "category": "OpenClaude"
+        "command": "tigerpaw.openSetupDocs",
+        "title": "Tigerpaw: Open Setup Guide",
+        "category": "Tigerpaw"
       },
       {
-        "command": "openclaude.openWorkspaceProfile",
-        "title": "OpenClaude: Open Workspace Profile",
-        "category": "OpenClaude"
+        "command": "tigerpaw.openWorkspaceProfile",
+        "title": "Tigerpaw: Open Workspace Profile",
+        "category": "Tigerpaw"
       },
       {
-        "command": "openclaude.openControlCenter",
-        "title": "OpenClaude: Open Control Center",
-        "category": "OpenClaude"
+        "command": "tigerpaw.openControlCenter",
+        "title": "Tigerpaw: Open Control Center",
+        "category": "Tigerpaw"
       }
     ],
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "openclaude",
-          "title": "OpenClaude",
-          "icon": "media/openclaude.svg"
+          "id": "tigerpaw",
+          "title": "Tigerpaw",
+          "icon": "media/tigerpaw.svg"
         }
       ]
     },
     "views": {
-      "openclaude": [
+      "tigerpaw": [
         {
-          "id": "openclaude.controlCenter",
+          "id": "tigerpaw.controlCenter",
           "name": "Control Center",
           "type": "webview"
         }
       ]
     },
     "configuration": {
-      "title": "OpenClaude",
+      "title": "Tigerpaw",
       "properties": {
-        "openclaude.launchCommand": {
+        "tigerpaw.launchCommand": {
           "type": "string",
-          "default": "openclaude",
-          "description": "Command run in the integrated terminal when launching OpenClaude."
+          "default": "tigerpaw",
+          "description": "Command run in the integrated terminal when launching Tigerpaw."
         },
-        "openclaude.terminalName": {
+        "tigerpaw.terminalName": {
           "type": "string",
-          "default": "OpenClaude",
-          "description": "Integrated terminal tab name for OpenClaude sessions."
+          "default": "Tigerpaw",
+          "description": "Integrated terminal tab name for Tigerpaw sessions."
         },
-        "openclaude.useOpenAIShim": {
+        "tigerpaw.useOpenAIShim": {
           "type": "boolean",
           "default": false,
-          "description": "Optionally set CLAUDE_CODE_USE_OPENAI=1 in launched OpenClaude terminals."
+          "description": "Optionally set CLAUDE_CODE_USE_OPENAI=1 in launched Tigerpaw terminals."
         }
       }
     },
     "themes": [
       {
-        "label": "OpenClaude Terminal Black",
+        "label": "Tigerpaw Terminal Black",
         "uiTheme": "vs-dark",
-        "path": "./themes/OpenClaude-Terminal-Black.json"
+        "path": "./themes/Tigerpaw-Terminal-Black.json"
       }
     ]
   },
@@ -115,7 +115,7 @@
     "package": "npx @vscode/vsce package --no-dependencies"
   },
   "keywords": [
-    "openclaude",
+    "tigerpaw",
     "terminal",
     "theme",
     "cli",
@@ -123,7 +123,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Gitlawb/openclaude"
+    "url": "https://github.com/Gitlawb/tigerpaw"
   },
   "license": "MIT"
 }
