@@ -1,0 +1,129 @@
+{
+  "name": "tigerpaw-vscode",
+  "displayName": "Tigerpaw",
+  "description": "Practical VS Code companion for Tigerpaw with project-aware launch behavior and a real Control Center.",
+  "version": "0.1.1",
+  "publisher": "devnull-bootloader",
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Themes",
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:tigerpaw.start",
+    "onCommand:tigerpaw.startInWorkspaceRoot",
+    "onCommand:tigerpaw.openDocs",
+    "onCommand:tigerpaw.openSetupDocs",
+    "onCommand:tigerpaw.openWorkspaceProfile",
+    "onCommand:tigerpaw.openControlCenter",
+    "onView:tigerpaw.controlCenter"
+  ],
+  "main": "./src/extension.js",
+  "files": [
+    "README.md",
+    "media/**",
+    "src/extension.js",
+    "src/presentation.js",
+    "src/state.js",
+    "themes/**"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "tigerpaw.start",
+        "title": "Tigerpaw: Launch in Terminal",
+        "category": "Tigerpaw"
+      },
+      {
+        "command": "tigerpaw.startInWorkspaceRoot",
+        "title": "Tigerpaw: Launch in Workspace Root",
+        "category": "Tigerpaw"
+      },
+      {
+        "command": "tigerpaw.openDocs",
+        "title": "Tigerpaw: Open Repository",
+        "category": "Tigerpaw"
+      },
+      {
+        "command": "tigerpaw.openSetupDocs",
+        "title": "Tigerpaw: Open Setup Guide",
+        "category": "Tigerpaw"
+      },
+      {
+        "command": "tigerpaw.openWorkspaceProfile",
+        "title": "Tigerpaw: Open Workspace Profile",
+        "category": "Tigerpaw"
+      },
+      {
+        "command": "tigerpaw.openControlCenter",
+        "title": "Tigerpaw: Open Control Center",
+        "category": "Tigerpaw"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "tigerpaw",
+          "title": "Tigerpaw",
+          "icon": "media/tigerpaw.svg"
+        }
+      ]
+    },
+    "views": {
+      "tigerpaw": [
+        {
+          "id": "tigerpaw.controlCenter",
+          "name": "Control Center",
+          "type": "webview"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Tigerpaw",
+      "properties": {
+        "tigerpaw.launchCommand": {
+          "type": "string",
+          "default": "tigerpaw",
+          "description": "Command run in the integrated terminal when launching Tigerpaw."
+        },
+        "tigerpaw.terminalName": {
+          "type": "string",
+          "default": "Tigerpaw",
+          "description": "Integrated terminal tab name for Tigerpaw sessions."
+        },
+        "tigerpaw.useOpenAIShim": {
+          "type": "boolean",
+          "default": false,
+          "description": "Optionally set CLAUDE_CODE_USE_OPENAI=1 in launched Tigerpaw terminals."
+        }
+      }
+    },
+    "themes": [
+      {
+        "label": "Tigerpaw Terminal Black",
+        "uiTheme": "vs-dark",
+        "path": "./themes/Tigerpaw-Terminal-Black.json"
+      }
+    ]
+  },
+  "scripts": {
+    "test": "node --test ./src/*.test.js",
+    "lint": "node -e \"for (const file of require('node:fs').readdirSync('./src')) { if (file.endsWith('.js')) { require('node:child_process').execFileSync(process.execPath, ['--check', require('node:path').join('src', file)], { stdio: 'inherit' }); } }\"",
+    "package": "npx @vscode/vsce package --no-dependencies"
+  },
+  "keywords": [
+    "tigerpaw",
+    "terminal",
+    "theme",
+    "cli",
+    "llm"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Gitlawb/tigerpaw"
+  },
+  "license": "MIT"
+}
