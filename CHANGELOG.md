@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.0 (2026-06-29)
+
+
+### Features
+
+* update provider profiles, web UI, and VS Code extension files ([efe2f49](https://github.com/Ziaur-786/tigerpaw/commit/efe2f49f7ea367557bab7d644500cad154c8d8f2))
+
 ## [0.3.0](https://github.com/Gitlawb/openclaude/compare/v0.2.3...v0.3.0) (2026-04-14)
 
 
