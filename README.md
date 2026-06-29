@@ -25,13 +25,36 @@ Tigerpaw is also mirrored to GitLawb:
 
 ## Quick Start
 
+### Prerequisites
+
+To install and run Tigerpaw, make sure the following three tools are installed on your system. **Important:** Their installation folders must be added to your system's `PATH` variable (most installers do this automatically).
+
+#### 1. Bun
+* **Windows (PowerShell):** `powershell -c "irm bun.sh/install.ps1 | iex"`
+* **macOS / Linux:** `curl -fsSL https://bun.sh/install | bash`
+* *Verify:* Run `bun --version` in a new terminal.
+
+#### 2. Git
+* **Windows:** Download and install from [git-scm.com](https://git-scm.com/download/win).
+* **macOS:** `brew install git` (using Homebrew) or run `xcode-select --install` in terminal.
+* **Linux:** `sudo apt install git` (Ubuntu/Debian) or `sudo dnf install git` (Fedora).
+* *Verify:* Run `git --version` in your terminal.
+
+#### 3. ripgrep (`rg`)
+* **Windows:** Run `winget install BurntSushi.ripgrep` in PowerShell.
+* **macOS:** `brew install ripgrep`
+* **Linux:** `sudo apt install ripgrep`
+* *Verify:* Run `rg --version` in your terminal.
+
 ### Install
 
+Once the prerequisites are ready, install Tigerpaw globally from GitHub:
+
 ```bash
-npm install -g @gitlawb/tigerpaw
+bun install -g Ziaur-786/tigerpaw
 ```
 
-If the install later reports `ripgrep not found`, install ripgrep system-wide and confirm `rg --version` works in the same terminal before starting Tigerpaw.
+*(Alternatively, if using npm: `npm install -g Ziaur-786/tigerpaw`)*
 
 ### Start
 
