@@ -84,6 +84,57 @@ async function main(): Promise<void> {
     return;
   }
 
+  // Fast-path for --web UI launch
+  if (args.includes('--web')) {
+    // Enable configs first so we can read settings
+    const { enableConfigs } = await import('../utils/config.js');
+    enableConfigs();
+
+    // Apply settings.env from user settings (includes GitHub provider settings from /onboard-github)
+    const { applySafeConfigEnvironmentVariables } = await import('../utils/managedEnv.js');
+    applySafeConfigEnvironmentVariables();
+
+    // Load active provider profile environment variables
+    const { buildStartupEnvFromProfile, applyProfileEnvToProcessEnv } = await import('../utils/providerProfile.js');
+    const startupEnv = await buildStartupEnvFromProfile({
+      processEnv: process.env,
+    });
+    if (startupEnv !== process.env) {
+      const { getProviderValidationError } = await import('../utils/providerValidation.js');
+      const startupProfileError = await getProviderValidationError(startupEnv);
+      if (startupProfileError) {
+        console.error(
+          `Warning: ignoring saved provider profile. ${startupProfileError}`,
+        );
+      } else {
+        applyProfileEnvToProcessEnv(process.env, startupEnv);
+      }
+    }
+
+    // Force apply the active provider profile LAST so the global config selection
+    // always wins over any pre-existing .env or shell provider selection.
+    // This must come after buildStartupEnvFromProfile to prevent that function
+    // from stripping and overriding our forced profile env.
+    const { applyActiveProviderProfileFromConfig } = await import('../utils/providerProfiles.js');
+    applyActiveProviderProfileFromConfig(undefined, { force: true });
+
+    // Hydrate GitHub credentials after profile is applied so CLAUDE_CODE_USE_GITHUB from profile is available
+    try {
+      const {
+        hydrateGithubModelsTokenFromSecureStorage,
+        refreshGithubModelsTokenIfNeeded,
+      } = await import('../utils/githubModelsCredentials.js');
+      await refreshGithubModelsTokenIfNeeded();
+      hydrateGithubModelsTokenFromSecureStorage();
+    } catch (e) {
+      // Ignore if secure storage is unavailable/errors in this environment
+    }
+
+    console.log('Launching Tigerpaw Web UI...');
+    await import('../web-ui/server.js');
+    return;
+  }
+
   // --provider: set provider env vars early so saved-profile resolution,
   // validation, and the startup banner all see the intended provider/model.
   if (args.includes('--provider')) {

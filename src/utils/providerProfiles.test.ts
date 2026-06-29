@@ -359,6 +359,15 @@ describe('getProviderPresetDefaults', () => {
     expect(defaults.baseUrl).toBe('http://localhost:11434/v1')
     expect(defaults.model).toBe('llama3.1:8b')
   })
+
+  test('nvidia preset defaults to NVIDIA NIM endpoint and Llama 3.1 70B model', async () => {
+    const { getProviderPresetDefaults } = await importFreshProviderProfileModules()
+    const defaults = getProviderPresetDefaults('nvidia')
+
+    expect(defaults.baseUrl).toBe('https://integrate.api.nvidia.com/v1')
+    expect(defaults.model).toBe('meta/llama-3.1-70b-instruct')
+    expect(defaults.requiresApiKey).toBe(true)
+  })
 })
 
 describe('deleteProviderProfile', () => {

@@ -124,6 +124,7 @@ function detectProvider(): { name: string; model: string; baseUrl: string; isLoc
     else if (/openrouter/i.test(baseUrl))                             name = 'OpenRouter'
     else if (/together/i.test(baseUrl))                               name = 'Together AI'
     else if (/groq/i.test(baseUrl))                                   name = 'Groq'
+    else if (/nvidia/i.test(baseUrl) || /nvidia/i.test(rawModel))     name = 'NVIDIA'
     else if (/mistral/i.test(baseUrl) || /mistral/i.test(rawModel))     name = 'Mistral'
     else if (/azure/i.test(baseUrl))                                  name = 'Azure OpenAI'
     else if (/llama/i.test(rawModel))                                    name = 'Meta Llama'

@@ -985,6 +985,11 @@ export function ProviderManager({ mode, onDone }: Props): React.ReactNode {
         description: 'Groq OpenAI-compatible endpoint',
       },
       {
+        value: 'nvidia',
+        label: 'NVIDIA',
+        description: 'NVIDIA NIM OpenAI-compatible endpoint',
+      },
+      {
         value: 'mistral',
         label: 'Mistral',
         description: 'Mistral OpenAI-compatible endpoint',

@@ -19,6 +19,7 @@
     "onCommand:tigerpaw.openSetupDocs",
     "onCommand:tigerpaw.openWorkspaceProfile",
     "onCommand:tigerpaw.openControlCenter",
+    "onCommand:tigerpaw.openWebUI",
     "onView:tigerpaw.controlCenter"
   ],
   "main": "./src/extension.js",
@@ -60,6 +61,11 @@
       {
         "command": "tigerpaw.openControlCenter",
         "title": "Tigerpaw: Open Control Center",
+        "category": "Tigerpaw"
+      },
+      {
+        "command": "tigerpaw.openWebUI",
+        "title": "Tigerpaw: Open Web Dashboard",
         "category": "Tigerpaw"
       }
     ],

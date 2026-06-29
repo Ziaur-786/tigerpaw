@@ -20,6 +20,7 @@ export type ProviderPreset =
   | 'openrouter'
   | 'lmstudio'
   | 'custom'
+  | 'nvidia'
 
 export type ProviderProfileInput = {
   provider?: ProviderProfile['provider']
@@ -216,6 +217,15 @@ export function getProviderPresetDefaults(
         model: 'local-model',
         apiKey: '',
         requiresApiKey: false,
+      }
+    case 'nvidia':
+      return {
+        provider: 'openai',
+        name: 'NVIDIA',
+        baseUrl: 'https://integrate.api.nvidia.com/v1',
+        model: 'meta/llama-3.1-70b-instruct',
+        apiKey: '',
+        requiresApiKey: true,
       }
     case 'custom':
       return {

@@ -285,6 +285,10 @@ function getOpenAICompatibleLabel(baseUrl, model) {
     return 'Groq';
   }
 
+  if (normalizedBaseUrl.includes('nvidia') || normalizedModel.includes('nvidia')) {
+    return 'NVIDIA';
+  }
+
   if (normalizedBaseUrl.includes('mistral') || normalizedModel.includes('mistral')) {
     return 'Mistral';
   }
